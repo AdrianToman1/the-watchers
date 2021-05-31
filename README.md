@@ -7,7 +7,7 @@ I’m sure that there are existing and better solutions out there, but I haven�
 
 ## Backstory
 
-During my recent job search, many of the job descriptions I read called for skills in serverless computer, containerisation, Kerbinetics, cloud eventing services, Node.js & React. Since then, I had been looking for an idea where I could take a “learn by doing” approach to develop my skill in those areas.
+During my recent job search, many of the job descriptions I read called for skills in serverless computer, containerisation, Kubernetes, cloud eventing services, Node.js & React. Since then, I had been looking for an idea where I could take a “learn by doing” approach to develop my skill in those areas.
 
 I also found myself being the last dev standing to provide support for a small collection of websites which I am doing only on an “as need” basis. And after one incident where a couple of WordPress sites hosted in IIS stopped responding, accompanied by the usual whines to get them back online ASAP. I was over being reactive.
 
