@@ -43,3 +43,13 @@ The Trigger Via Event Grid will extend the functionality of the Store Results Ur
 The Trigger Via Event Grid prototype allows me to learn what is required to leverage the Azure Event Grid. This prototype also allows me to explore implementing the URL Checking logic as a microservice.
 
 This prototype only needs to use Azure Event Grid to trigger an URL check. The details of the event are not important.
+
+
+### Prototype - Azure Comos DB Trigger
+
+Brad suggested leveraging an Azure Comos DB Trigger to invoke an Azure Function when URL check results is save to the Comos DB. This function will decide if the URL is offline and will generate an "offline" event for another function to handle.
+
+Azure Comos DB Trigger will give me my first expeirence of triggering events from NoSQL databases. Something that I have so little knowledge of, I feel unable to effectively describe it.
+
+This prototype will build upon the previous prototype, but will use an Azure Comos DB Trigger to  invoke an Azure Function when URL check results is save to the Comos DB. This function will generate an "offline" even that will be subscribed to by another new function which will log the result. The details of the "offline" event and what is log isn't important, it just needs to be descriptive enough to confirm that the URL is offline.
+ 
