@@ -30,7 +30,7 @@ namespace TheWatchers.Prototypes.UrlChecking
         {
             var executedAt = DateTimeOffset.Now;
 
-            const string url = "https://adriantoman.com/";
+            const string url = "https://watchers-test-site.azurewebsites.net/OK";
 
             var requestSentAt = DateTimeOffset.Now;
 
@@ -61,7 +61,12 @@ namespace TheWatchers.Prototypes.UrlChecking
 
             var s = await response.Content.ReadAsStringAsync();
 
-            urlCheckResult.Body = s.Substring(0, 1000);
+            if (s.Length > 1000)
+            {
+                s = s.Substring(0, 1000);
+            }
+
+            urlCheckResult.Body = s;
 
             try
             {

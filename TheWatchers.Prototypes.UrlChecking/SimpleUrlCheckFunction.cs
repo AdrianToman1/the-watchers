@@ -13,7 +13,7 @@ namespace TheWatchers.Prototypes.UrlChecking
         [FunctionName("SimpleUrlCheckFunction")]
         public static async Task Run([TimerTrigger("0 */5 * * * *")]TimerInfo myTimer, ILogger log)
         {
-            const string url = "https://adriantoman.com/";
+            const string url = "https://watchers-test-site.azurewebsites.net/OK";
 
             var response = await Client.GetAsync(url);
 
