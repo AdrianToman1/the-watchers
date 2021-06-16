@@ -2,7 +2,6 @@ using System;
 using Azure;
 using Azure.Messaging.EventGrid;
 using Microsoft.Azure.WebJobs;
-using Microsoft.Azure.WebJobs.Host;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
@@ -18,7 +17,7 @@ namespace TheWatchers.Prototypes.UrlChecking
             var config = new ConfigurationBuilder()
                 .SetBasePath(context.FunctionAppDirectory)
                 .AddJsonFile("local.settings.json")
-                .AddUserSecrets<Stuff>()
+                .AddUserSecrets<Configuration>()
                 .Build();
 
             var client = new EventGridPublisherClient(
@@ -38,7 +37,7 @@ namespace TheWatchers.Prototypes.UrlChecking
         }
     }
 
-    public class Stuff
+    public class Configuration
     {
         public string EventGridUrl { get; set; }
 
