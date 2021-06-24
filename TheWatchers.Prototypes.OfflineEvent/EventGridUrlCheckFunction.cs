@@ -4,7 +4,9 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.Azure.Cosmos;
+using Microsoft.Azure.EventGrid.Models;
 using Microsoft.Azure.WebJobs;
+using Microsoft.Azure.WebJobs.Extensions.EventGrid;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 
@@ -25,8 +27,11 @@ namespace TheWatchers.Prototypes.UrlChecking
 
         private static readonly HttpClient Client = new HttpClient();
 
+        // ngrok http -host-header=localhost 7071
+        // https://ae40a9377ed8.ngrok.io/runtime/webhooks/EventGrid?functionName=EventGridUrlCheckFunction
+
         [FunctionName("EventGridUrlCheckFunction")]
-        public static async Task Run([TimerTrigger("0 */5 * * * *")] TimerInfo myTimer, ILogger log)
+        public static async Task Run([EventGridTrigger] EventGridEvent eventGridEvent, ILogger log)
         {
             var executedAt = DateTimeOffset.Now;
 
@@ -44,7 +49,7 @@ namespace TheWatchers.Prototypes.UrlChecking
             {
                 Id = Guid.NewGuid().ToString(),
                 ExecutedAt = executedAt,
-                ScheduledFor = myTimer.ScheduleStatus.Next,
+                ScheduledFor = requestSentAt.DateTime,//myTimer.ScheduleStatus.Next,
                 RequestSentAt = requestSentAt,
                 ResponseSentAt = response.Headers.Date,
                 ResponseReceivedAt = responseReceivedAt,
