@@ -7,7 +7,7 @@ ngrok http -host-header=localhost 7071
 
 3. Delete and recreate event subscriptions
 
-https://da80ca490d0a.ngrok.io/runtime/webhooks/EventGrid?functionName=EventGridUrlCheckFunction
-https://da80ca490d0a.ngrok.io/runtime/webhooks/EventGrid?functionName=UrlOfflineFunction
+https://5c0049f3f848.ngrok.io/runtime/webhooks/EventGrid?functionName=DoUrlCheck
+https://5c0049f3f848.ngrok.io/runtime/webhooks/EventGrid?functionName=UrlOfflineFunction
 
  

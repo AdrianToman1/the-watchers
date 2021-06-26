@@ -7,13 +7,12 @@ using Microsoft.Azure.WebJobs;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
-using TheWatchers.Prototypes.UrlChecking;
 
-namespace TheWatchers.Prototypes.CosmosDbTrigger
+namespace TheWatchers.Prototypes.OfflineEvent
 {
-    public static class CosmosDbTriggerFunction
+    public static class UrlCheckedFunction
     {
-        [FunctionName("CosmosDbTriggerFunction")]
+        [FunctionName("UrlCheckedFunction")]
         public static void Run([CosmosDBTrigger(
             databaseName: "FamilyDatabase",
             collectionName: "ResultContainer",
@@ -28,7 +27,6 @@ namespace TheWatchers.Prototypes.CosmosDbTrigger
 
                     log.LogInformation($"{urlCheckResult.ExecutedAt} {urlCheckResult.Url} {urlCheckResult.StatusCode}");
 
-
                     if (urlCheckResult.StatusCode.StatusCode == 200)
                     {
                         var config = new ConfigurationBuilder()
@@ -38,12 +36,8 @@ namespace TheWatchers.Prototypes.CosmosDbTrigger
                             .Build();
 
                         var client = new EventGridPublisherClient(
-                            new Uri("https://urlcheckresult.australiasoutheast-1.eventgrid.azure.net/api/events"),
-                            new AzureKeyCredential("qiCfR/T8RO0rTpcUAFSR2/22T4uZuLsnGryc+oAwyt0="));
-
-                        //var client = new EventGridPublisherClient(
-                        //    new Uri(config["EventGridUrl"]),
-                        //    new AzureKeyCredential(config["EventGridKey"]));
+                            new Uri(config["UrlCheckedConfiguration:UrlCheckUrl"]),
+                            new AzureKeyCredential(config["UrlCheckedConfiguration:UrlCheckKey"]));
 
                         // Add EventGridEvents to a list to publish to the topic
                         EventGridEvent egEvent =

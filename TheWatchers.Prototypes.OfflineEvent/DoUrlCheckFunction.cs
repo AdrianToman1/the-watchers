@@ -10,9 +10,9 @@ using Microsoft.Azure.WebJobs.Extensions.EventGrid;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 
-namespace TheWatchers.Prototypes.UrlChecking
+namespace TheWatchers.Prototypes.OfflineEvent
 {
-    public static class EventGridUrlCheckFunction
+    public static class DoUrlCheckFunction
     {
         // The Azure Cosmos DB endpoint for running this sample.
         private static readonly string EndpointUri = "https://localhost:8081";
@@ -28,9 +28,9 @@ namespace TheWatchers.Prototypes.UrlChecking
         private static readonly HttpClient Client = new HttpClient();
 
         // ngrok http -host-header=localhost 7071
-        // https://ae40a9377ed8.ngrok.io/runtime/webhooks/EventGrid?functionName=EventGridUrlCheckFunction
+        // https://ae40a9377ed8.ngrok.io/runtime/webhooks/EventGrid?functionName=DoUrlCheck
 
-        [FunctionName("EventGridUrlCheckFunction")]
+        [FunctionName("DoUrlCheck")]
         public static async Task Run([EventGridTrigger] EventGridEvent eventGridEvent, ILogger log)
         {
             var executedAt = DateTimeOffset.Now;

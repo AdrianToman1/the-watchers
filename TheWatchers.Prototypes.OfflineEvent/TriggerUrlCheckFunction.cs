@@ -5,11 +5,11 @@ using Microsoft.Azure.WebJobs;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
-namespace TheWatchers.Prototypes.UrlChecking
+namespace TheWatchers.Prototypes.OfflineEvent
 {
-    public static class EventGridTriggerFunction
+    public static class TriggerUrlCheckFunction
     {
-        [FunctionName("EventGridTriggerFunction")]
+        [FunctionName("TriggerUrlCheckFunction")]
         public static void Run([TimerTrigger("0 */5 * * * *")]TimerInfo myTimer, ExecutionContext context, ILogger log)
         {
             log.LogInformation($"C# Timer trigger function executed at: {DateTime.Now}");
@@ -21,8 +21,8 @@ namespace TheWatchers.Prototypes.UrlChecking
                 .Build();
 
             var client = new EventGridPublisherClient(
-                new Uri(config["EventGridUrl"]),
-                new AzureKeyCredential(config["EventGridKey"]));
+                new Uri(config["TriggerUrlCheck:UrlCheckUrl"]),
+                new AzureKeyCredential(config["TriggerUrlCheck:UrlCheckKey"]));
 
             // Add EventGridEvents to a list to publish to the topic
             EventGridEvent egEvent =
@@ -35,12 +35,5 @@ namespace TheWatchers.Prototypes.UrlChecking
             // Send the event
             client.SendEvent(egEvent);
         }
-    }
-
-    public class Configuration
-    {
-        public string EventGridUrl { get; set; }
-
-        public string EventGridKey { get; set; }
     }
 }
