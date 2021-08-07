@@ -3,11 +3,13 @@
 
 ngrok http -host-header=localhost 7071
 
-2. Debug functions.
+2. Start Azure Cosmos DB Emulator
 
-3. Delete and recreate event subscriptions
+2. Debug functions in Visual Stuido
 
-https://5c0049f3f848.ngrok.io/runtime/webhooks/EventGrid?functionName=DoUrlCheck
-https://5c0049f3f848.ngrok.io/runtime/webhooks/EventGrid?functionName=UrlOfflineFunction
+3. Delete and recreate Event Grid Topic subscriptions in Azure. Use web hooks. 
+
+https://adea-61-68-112-40.ngrok.io/runtime/webhooks/EventGrid?functionName=DoUrlCheck
+https://adea-61-68-112-40.ngrok.io/runtime/webhooks/EventGrid?functionName=UrlOfflineFunction
 
  
