@@ -10,7 +10,7 @@ namespace TheWatchers.Prototypes.OfflineEvent
     public static class TriggerUrlCheckFunction
     {
         [FunctionName("TriggerUrlCheckFunction")]
-        public static void Run([TimerTrigger("0 */5 * * * *")]TimerInfo myTimer, ExecutionContext context, ILogger log)
+        public static void Run([TimerTrigger("0 */5 * * * *")] TimerInfo myTimer, ExecutionContext context, ILogger log)
         {
             log.LogInformation($"C# Timer trigger function executed at: {DateTime.Now}");
 
@@ -24,16 +24,16 @@ namespace TheWatchers.Prototypes.OfflineEvent
                 new Uri(config["TriggerUrlCheck:UrlCheckUrl"]),
                 new AzureKeyCredential(config["TriggerUrlCheck:UrlCheckKey"]));
 
-            // Add EventGridEvents to a list to publish to the topic
-            EventGridEvent egEvent =
-                new EventGridEvent(
-                    "ExampleEventSubject",
-                    "Example.EventType",
-                    "1.0",
-                    "This is the event data");
-
-            // Send the event
-            client.SendEvent(egEvent);
+            client.SendEvent(new EventGridEvent(
+                "ExampleEventSubject",
+                "Example.EventType",
+                "1.0",
+                new EventData { Stuff = "This is the event data" }));
         }
+    }
+
+    public class EventData
+    {
+      public string Stuff { get; set; }
     }
 }

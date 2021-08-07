@@ -9,6 +9,7 @@ using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.EventGrid;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace TheWatchers.Prototypes.OfflineEvent
 {
@@ -36,6 +37,8 @@ namespace TheWatchers.Prototypes.OfflineEvent
             var executedAt = DateTimeOffset.Now;
 
             const string url = "https://watchers-test-site.azurewebsites.net/OK";
+            var stuff = ((JObject) eventGridEvent.Data)["Stuff"].Value<string>();
+
 
             var requestSentAt = DateTimeOffset.Now;
 
