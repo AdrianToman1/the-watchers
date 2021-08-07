@@ -36,9 +36,7 @@ namespace TheWatchers.Prototypes.OfflineEvent
         {
             var executedAt = DateTimeOffset.Now;
 
-            var stuff = ((JObject) eventGridEvent.Data)["Stuff"].Value<string>();
-
-            const string url = "https://plywood-violin.azurewebsites.net/monkey";
+            var url = ((JObject) eventGridEvent.Data)["Url"].Value<string>();
 
             var requestSentAt = DateTimeOffset.Now;
 

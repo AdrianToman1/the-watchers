@@ -28,12 +28,12 @@ namespace TheWatchers.Prototypes.OfflineEvent
                 "ExampleEventSubject",
                 "Example.EventType",
                 "1.0",
-                new EventData { Stuff = "This is the event data" }));
+                new DoUrlCheckEventData { Url = "https://plywood-violin.azurewebsites.net/monkey" }));
         }
     }
 
-    public class EventData
+    public class DoUrlCheckEventData
     {
-      public string Stuff { get; set; }
+      public string Url { get; set; }
     }
 }
