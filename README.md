@@ -18,7 +18,7 @@ It didn’t take me long to see that I could hack together my own DYI website av
 
 I am using a learn by doing approach to develop The Watches as I have little to no exposure to most the tech that I want to use.
 
-### Prototype - Simple URL Check
+### Prototype 1 - Simple URL Check
 
 The Simple URL Check will provide an answer to the question: Can I use a serverless function to periodically call an URL and check it’s response status?
 
