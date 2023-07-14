@@ -1,0 +1,1 @@
+Requires Azure Cosmos DB Emulator

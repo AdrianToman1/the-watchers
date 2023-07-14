@@ -5,14 +5,6 @@
     <UserSecretsId>d100cd48-cc55-4ba6-b724-ce069a99555c</UserSecretsId>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Remove="SimpleUrlCheckFunction.cs" />
-    <Compile Remove="StoreResultsUrlCheckFunction.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="SimpleUrlCheckFunction.cs" />
-    <None Include="StoreResultsUrlCheckFunction.cs" />
-  </ItemGroup>
-  <ItemGroup>
     <PackageReference Include="Azure.Messaging.EventGrid" Version="4.2.0" />
     <PackageReference Include="Microsoft.Azure.Cosmos" Version="3.19.0" />
     <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.EventGrid" Version="2.1.0" />

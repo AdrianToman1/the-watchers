@@ -36,7 +36,7 @@ The Store Results of Url Check prototype allows me to learn what is required to 
 This prototype needs to connect to the Cosmos DB every time it checks the URL and then add a record to the database that describes the result of the check. What data is stored in the database, and the structure it is stored in, is not important. The stored results only need to be descriptive enough to confirm that the check was performed and a response status was obtained.
 
 
-### Prototype - Trigger Via Event Grid
+### Prototype 3 - Trigger Via Event Grid
 
 The Trigger Via Event Grid will extend the functionality of the Store Results Url Check prototype to use an event-based architecture via Azure Event Grid. The trigger for the existing URL Check function need to altered so it reacts to an event that will be generated periodically be a separate Azure function.
 
