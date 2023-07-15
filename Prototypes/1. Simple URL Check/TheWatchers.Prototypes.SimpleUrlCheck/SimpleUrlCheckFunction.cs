@@ -13,7 +13,7 @@ namespace TheWatchers.Prototypes.SimpleUrlCheck
         [FunctionName("SimpleUrlCheckFunction")]
         public static async Task Run([TimerTrigger("0 */5 * * * *")] TimerInfo myTimer, ILogger log)
         {
-            const string url = "https://adriantoman.com/";
+            const string url = "https://www.plywoodviolin.solutions/";
 
             var response = await Client.GetAsync(url);
 

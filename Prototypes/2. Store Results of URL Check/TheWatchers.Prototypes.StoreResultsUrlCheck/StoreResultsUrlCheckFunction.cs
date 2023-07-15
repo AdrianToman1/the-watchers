@@ -30,7 +30,7 @@ namespace TheWatchers.Prototypes.StoreResultsUrlCheck
         {
             var executedAt = DateTimeOffset.Now;
 
-            const string url = "https://adriantoman.com/";
+            const string url = "https://www.plywoodviolin.solutions/";
 
             var requestSentAt = DateTimeOffset.Now;
 
@@ -61,7 +61,7 @@ namespace TheWatchers.Prototypes.StoreResultsUrlCheck
 
             var s = await response.Content.ReadAsStringAsync();
 
-            urlCheckResult.Body = s.Substring(0, 1000);
+            urlCheckResult.Body = s?.Length > 1000 ? s.Substring(0, 40) : s;
 
             try
             {
