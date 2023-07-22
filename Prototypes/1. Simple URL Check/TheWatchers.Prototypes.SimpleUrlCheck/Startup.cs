@@ -1,4 +1,5 @@
-﻿using Microsoft.Azure.Functions.Extensions.DependencyInjection;
+﻿using System;
+using Microsoft.Azure.Functions.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using TheWatchers.Prototypes.SimpleUrlCheck;
@@ -18,6 +19,19 @@ public class Startup : FunctionsStartup
     {
         builder.Services.AddHttpClient();
         builder.Services.AddOptions<Configuration>()
-            .Configure<IConfiguration>((settings, configuration) => { configuration.Bind(settings); });
+            .Configure<IConfiguration>((settings, configuration) =>
+            {
+                configuration.GetSection("Configuration").Bind(settings);
+            });
+    }
+
+    /// <inheritdoc />
+    public override void ConfigureAppConfiguration(IFunctionsConfigurationBuilder builder)
+    {
+        builder.ConfigurationBuilder
+            .SetBasePath(Environment.CurrentDirectory)
+            .AddJsonFile("local.settings.json", true)
+            .AddEnvironmentVariables()
+            .Build();
     }
 }

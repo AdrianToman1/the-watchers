@@ -11,7 +11,9 @@ The location.settings.json file can be updated to provide a URL to check, otherw
     "IsEncrypted": false,
     "Values": {
         "AzureWebJobsStorage": "UseDevelopmentStorage=true",
-        "FUNCTIONS_WORKER_RUNTIME": "dotnet",
+        "FUNCTIONS_WORKER_RUNTIME": "dotnet"
+    },
+    "Configuration": {
         "Url": "https://google.com"
     }
 }
