@@ -1,5 +1,6 @@
 using System;
 using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Extensions.Logging;
@@ -35,11 +36,12 @@ public class SimpleUrlCheckFunction
     /// </summary>
     /// <param name="myTimer">The timer schedule information.</param>
     /// <param name="log">The logger.</param>
+    /// <param name="cancellationToken">Optional <see cref="CancellationToken"/> representing request cancellation.</param>
     /// <returns>A task representing the asynchronous operation.</returns>
     [FunctionName("SimpleUrlCheckFunction")]
-    public async Task DoSimpleUrlCheck([TimerTrigger("0 */5 * * * *")] TimerInfo myTimer, ILogger log)
+    public async Task DoSimpleUrlCheck([TimerTrigger("0 */5 * * * *")] TimerInfo myTimer, ILogger log, CancellationToken cancellationToken = default)
     {
-        var response = await _client.GetAsync(_configuration.Url);
+        var response = await _client.GetAsync(_configuration.Url, cancellationToken);
 
         log.LogInformation($"{DateTime.Now} {_configuration.Url} {response.StatusCode}");
     }
