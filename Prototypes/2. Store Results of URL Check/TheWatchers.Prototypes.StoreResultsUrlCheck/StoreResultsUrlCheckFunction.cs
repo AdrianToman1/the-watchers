@@ -2,121 +2,82 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Extensions.Logging;
-using Microsoft.Azure.Cosmos;
-using Newtonsoft.Json;
+using Microsoft.Extensions.Options;
+using TheWatchers.Prototypes.StoreResultsUrlCheck.CosmosService;
 
-namespace TheWatchers.Prototypes.StoreResultsUrlCheck
+namespace TheWatchers.Prototypes.StoreResultsUrlCheck;
+
+/// <summary>
+///     Records the HTTP response status code returned by an URL to a Cosmos DB.
+/// </summary>
+public class StoreResultsUrlCheckFunction
 {
-    public static class StoreResultsUrlCheckFunction
+    private readonly HttpClient _client;
+    private readonly Configuration _configuration;
+    private readonly ICosmosDbRepositoryService _cosmosDbRepositoryService;
+
+    /// <summary>
+    ///     Initializes a new instance of the <see cref="StoreResultsUrlCheckFunction" /> class.
+    /// </summary>
+    /// <param name="httpClientFactory">The HttpClient factory.</param>
+    /// <param name="configuration">The configuration settings.</param>
+    /// <param name="cosmosDbRepositoryService">The Cosmos DB repository service.</param>
+    /// <exception cref="ArgumentNullException">
+    ///     One of the parameters (<c>httpClientFactory</c>, <c>configuration</c>, or <c>cosmosDbRepositoryService</c>) is null.
+    /// </exception>
+    public StoreResultsUrlCheckFunction(IHttpClientFactory httpClientFactory, IOptions<Configuration> configuration, ICosmosDbRepositoryService cosmosDbRepositoryService)
     {
-        // The Azure Cosmos DB endpoint for running this sample.
-        private static readonly string EndpointUri = "https://localhost:8081";
-
-        // The primary key for the Azure Cosmos account.
-        private static readonly string PrimaryKey =
-            "C2y6yDjf5/R+ob0N8A7Cgv30VRDJIWEHLM+4QDU5DE2nQ9nDuVTqobD4b8mGGyPMbIZnqyMsEcaGQy67XIw/Jw==";
-
-        // The name of the database and container we will create
-        private static string databaseId = "FamilyDatabase";
-        private static string containerId = "ResultContainer";
-
-        private static readonly HttpClient Client = new HttpClient();
-
-        [FunctionName("StoreResultsUrlCheckFunction")]
-        public static async Task Run([TimerTrigger("0 */5 * * * *")] TimerInfo myTimer, ILogger log)
-        {
-            var executedAt = DateTimeOffset.Now;
-
-            const string url = "https://www.plywoodviolin.solutions/";
-
-            var requestSentAt = DateTimeOffset.Now;
-
-            var response = await Client.GetAsync(url);
-
-            var responseReceivedAt = DateTimeOffset.Now;
-
-            log.LogInformation($"{DateTime.Now} {url} {response.StatusCode}");
-
-            var urlCheckResult = new UrlCheckResult
-            {
-                Id = Guid.NewGuid().ToString(),
-                ExecutedAt = executedAt,
-                ScheduledFor = myTimer.ScheduleStatus.Next,
-                RequestSentAt = requestSentAt,
-                ResponseSentAt = response.Headers.Date,
-                ResponseReceivedAt = responseReceivedAt,
-                StatusCode = new HttpStatusCode
-                {
-                    StatusCode = (int)response.StatusCode,
-                    ReasonPhrase = response.StatusCode.ToString()
-                },
-                Headers = response.Headers.ToList().ConvertAll(i => new Tuple<string, IEnumerable<string>>(i.Key, i.Value)),
-                Url = url
-            };
-
-            urlCheckResult.Headers.AddRange(response.Content.Headers.ToList().ConvertAll(i => new Tuple<string, IEnumerable<string>>(i.Key, i.Value)));
-
-            var s = await response.Content.ReadAsStringAsync();
-
-            urlCheckResult.Body = s?.Length > 1000 ? s.Substring(0, 40) : s;
-
-            try
-            {
-                var container = await GetDatabaseContainer();
-
-                var andersenFamilyResponse =
-                    await container.CreateItemAsync(urlCheckResult, new PartitionKey(urlCheckResult.Url));
-
-                // Note that after creating the item, we can access the body of the item with the Resource property off the ItemResponse. We can also access the RequestCharge property to see the amount of RUs consumed on this request.
-                Console.WriteLine("Created item in database with id: {0} Operation consumed {1} RUs.\n", andersenFamilyResponse.Resource.Id, andersenFamilyResponse.RequestCharge);
-
-
-            }
-            catch (CosmosException de)
-            {
-                Console.WriteLine("{0} error occurred: {1}", de.StatusCode, de);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Error: {0}", e);
-            }
-        }
-
-        public static async Task<Container> GetDatabaseContainer()
-        {
-            var cosmosClient = new CosmosClient(EndpointUri, PrimaryKey);
-            var database = (await cosmosClient.CreateDatabaseIfNotExistsAsync(databaseId)).Database;
-            return (await database.CreateContainerIfNotExistsAsync(containerId, "/Url")).Container;
-        }
+        _client = httpClientFactory?.CreateClient() ?? throw new ArgumentNullException(nameof(httpClientFactory));
+        _configuration = configuration?.Value ?? throw new ArgumentNullException(nameof(configuration));
+        _cosmosDbRepositoryService = cosmosDbRepositoryService ?? throw new ArgumentNullException(nameof(cosmosDbRepositoryService));
     }
 
-    public class UrlCheckResult
+    /// <summary>
+    ///     Performs a HTTP request to the URL and logs the response status code.
+    /// </summary>
+    /// <param name="myTimer">The timer schedule information.</param>
+    /// <param name="log">The logger.</param>
+    /// <param name="cancellationToken">Optional <see cref="CancellationToken"/> representing request cancellation.</param>
+    /// <returns>A task representing the asynchronous operation.</returns>
+    [FunctionName("StoreResultsUrlCheckFunction")]
+    public async Task DoSimpleUrlCheck([TimerTrigger("0 */5 * * * *")] TimerInfo myTimer, ILogger log, CancellationToken cancellationToken = default)
     {
-        [JsonProperty(PropertyName = "id")]
-        public string Id { get; set; }
-        public DateTimeOffset ExecutedAt { get; set; }
-        public DateTime ScheduledFor { get; set; }
-        public DateTimeOffset RequestSentAt { get; set; }
-        // May not be include in response
-        public DateTimeOffset? ResponseSentAt { get; set; }
-        public DateTimeOffset ResponseReceivedAt { get; set; }
-        public string Url { get; set; }
-        public HttpStatusCode StatusCode { get; set; }
-        // Don't assume that headers are a dictionary.
-        public List<Tuple<string, IEnumerable<string>>> Headers { get; set; }
-        public string Body { get; set; }
-        public override string ToString()
-        {
-            return JsonConvert.SerializeObject(this);
-        }
-    }
+        var executedAt = DateTimeOffset.Now;
 
-    public class HttpStatusCode
-    {
-        public int StatusCode { get; set; }
-        public string ReasonPhrase { get; set; }
+        var requestSentAt = DateTimeOffset.Now;
+        var httpResponseMessage = await _client.GetAsync(_configuration.Url, cancellationToken);
+        var responseReceivedAt = DateTimeOffset.Now;
+
+        log.LogInformation($"{responseReceivedAt} {_configuration.Url} {httpResponseMessage.StatusCode}");
+
+        var urlCheckResult = new UrlCheckResultModel
+        {
+            Id = Guid.NewGuid().ToString(),
+            ExecutedAt = executedAt,
+            ScheduledFor = myTimer.ScheduleStatus.Next,
+            RequestSentAt = requestSentAt,
+            ResponseSentAt = httpResponseMessage.Headers.Date,
+            ResponseReceivedAt = responseReceivedAt,
+            StatusCode = new HttpStatusCodeModel
+            {
+                StatusCode = (int)httpResponseMessage.StatusCode,
+                ReasonPhrase = httpResponseMessage.StatusCode.ToString()
+            },
+            Headers = httpResponseMessage.Headers.ToList()
+                .ConvertAll(i => new Tuple<string, IEnumerable<string>>(i.Key, i.Value)),
+            Url = _configuration.Url
+        };
+
+        urlCheckResult.Headers.AddRange(httpResponseMessage.Content.Headers.ToList()
+            .ConvertAll(i => new Tuple<string, IEnumerable<string>>(i.Key, i.Value)));
+
+        var s = await httpResponseMessage.Content.ReadAsStringAsync(cancellationToken);
+        urlCheckResult.Body = s.Length > Constants.MaxNumberOfHttpResponseBodyCharactersToPersist ? s[..Constants.MaxNumberOfHttpResponseBodyCharactersToPersist] : s;
+
+        await _cosmosDbRepositoryService.PersistUrlCheckResultAsync(urlCheckResult, cancellationToken);
     }
 }
