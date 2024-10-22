@@ -31,7 +31,7 @@ public class Startup : FunctionsStartup
             {
                 configuration.GetSection("CosmosDb").Bind(settings);
             });
-        builder.Services.AddCosmosDbService();
+        builder.Services.AddCosmosDb();
     }
 
     /// <inheritdoc />

@@ -9,15 +9,15 @@ namespace TheWatchers.Prototypes.StoreResultsUrlCheck.CosmosService;
 /// <summary>
 ///     Extension methods for adding Cosmos DB services to the <see cref="IServiceCollection" />.
 /// </summary>
-public static class ServiceCollectionCosmosDbRepositoryServiceExtensions
+public static class ServiceCollectionCosmosDbServiceExtensions
 {
     /// <summary>
-    ///     Adds the <see cref="ICosmosDbRepositoryService" /> to the <see cref="IServiceCollection" />.
+    ///     Adds <see cref="ICosmosDbRepositoryService" /> to the <see cref="IServiceCollection" />.
     /// </summary>
     /// <param name="services">The <see cref="IServiceCollection" /> to add <see cref="ICosmosDbRepositoryService" /> to.</param>
     /// <exception cref="ArgumentNullException"><c>services</c> is null.</exception>
     /// <returns>The <see cref="IServiceCollection" /> so that additional calls can be chained.</returns>
-    public static IServiceCollection AddCosmosDbService(this IServiceCollection services)
+    public static IServiceCollection AddCosmosDb(this IServiceCollection services)
     {
         if (services == null)
         {

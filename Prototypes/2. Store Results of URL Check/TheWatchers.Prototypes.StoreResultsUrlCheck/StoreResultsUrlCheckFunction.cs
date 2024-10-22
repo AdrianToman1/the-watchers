@@ -44,7 +44,7 @@ public class StoreResultsUrlCheckFunction
     /// <param name="cancellationToken">Optional <see cref="CancellationToken"/> representing request cancellation.</param>
     /// <returns>A task representing the asynchronous operation.</returns>
     [FunctionName("StoreResultsUrlCheckFunction")]
-    public async Task DoSimpleUrlCheck([TimerTrigger("0 */5 * * * *")] TimerInfo myTimer, ILogger log, CancellationToken cancellationToken = default)
+    public async Task DoUrlCheck([TimerTrigger("0 */5 * * * *")] TimerInfo myTimer, ILogger log, CancellationToken cancellationToken = default)
     {
         var executedAt = DateTimeOffset.Now;
 
