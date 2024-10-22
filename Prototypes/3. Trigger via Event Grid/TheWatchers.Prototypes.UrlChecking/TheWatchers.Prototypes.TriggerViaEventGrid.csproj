@@ -5,10 +5,10 @@
     <UserSecretsId>d100cd48-cc55-4ba6-b724-ce069a99555c</UserSecretsId>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Remove="EventGridTriggerUrlCheckFunction.cs" />
+    <Compile Remove="EventGridTriggerFunction.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="EventGridTriggerUrlCheckFunction.cs" />
+    <None Include="EventGridTriggerFunction.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Azure.Messaging.EventGrid" Version="4.17.0" />
