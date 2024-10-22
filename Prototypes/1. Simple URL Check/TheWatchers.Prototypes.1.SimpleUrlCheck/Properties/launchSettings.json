@@ -1,0 +1,15 @@
+{
+  "profiles": {
+    "TheWatchers.Prototypes._1.SimpleUrlCheck": {
+      "commandName": "Project",
+      "commandLineArgs": "--port 7136"
+    },
+    "Container (Dockerfile)": {
+      "commandName": "Docker",
+      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}",
+      "DockerfileRunArguments": "--init",
+      "httpPort": 31745,
+      "useSSL": false
+    }
+  }
+}

@@ -1,9 +1,0 @@
-{
-  "profiles": {
-    "TheWatchers.Prototypes.SimpleUrlCheck": {
-      "commandName": "Project",
-      "commandLineArgs": "--port 7078",
-      "launchBrowser": false
-    }
-  }
-}

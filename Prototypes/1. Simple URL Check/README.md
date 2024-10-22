@@ -4,16 +4,14 @@ An Azure Function that periodically (every 5 minutes) makes an HTTP request to a
 
 ## Settings
 
-The location.settings.json file can be updated to provide a URL to check, otherwise it will check https://www.plywoodviolin.solution by default.
+The local.settings.json file can be updated to provide a URL to check, otherwise it will check https://www.plywoodviolin.solution by default.
 
 ```
 {
     "IsEncrypted": false,
     "Values": {
         "AzureWebJobsStorage": "UseDevelopmentStorage=true",
-        "FUNCTIONS_WORKER_RUNTIME": "dotnet"
-    },
-    "Configuration": {
+        "FUNCTIONS_WORKER_RUNTIME": "dotnet-isolated",
         "Url": "https://google.com"
     }
 }
