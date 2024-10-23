@@ -1,8 +1,6 @@
-﻿using System;
-using System.Threading;
-using System.Threading.Tasks;
+﻿using TheWatchers.Prototypes._2.StoreResultsUrlCheck.Models;
 
-namespace TheWatchers.Prototypes.StoreResultsUrlCheck.CosmosService;
+namespace TheWatchers.Prototypes._2.StoreResultsUrlCheck.CosmosService;
 
 /// <summary>
 ///     Cosmos DB repository service.
