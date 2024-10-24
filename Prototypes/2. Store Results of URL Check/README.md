@@ -6,11 +6,11 @@ An Azure Function that periodically (every 5 minutes) makes an HTTP request to a
 
 Prototype 2 requires access to a Cosmos DB instance. Prototype 2 is configured to use the (Azure Cosmos Emulator)[https://learn.microsoft.com/en-us/azure/cosmos-db/local-emulator?tabs=ssl-netstd21] by default. Follow the Azure Cosmos Emulator installation instructions. Override the CosmosDb:AccountEndpoint settings in local.settings.json as required.
 
-In line with security best practices, the account key for the Cosmos DB is configured via the environment variable `THEWATCHERS_COSMOSDB_ACCOUNTKEY`. This enviroment variable must be defined. 
+In line with security best practices, the access key for the Cosmos DB is configured via the environment variable `THEWATCHERS_COSMOSDB_ACCOUNTKEY`. This enviroment variable must be defined. 
 
-Prototype 2 can target an actual Azure Cosmos DB by overriding the CosmosDb:AccountEndpoint in local.settings.json and the THEWATCHERS_COSMOSDB_ACCOUNTKEY enviroment variable as required.
+Prototype 2 can target an actual Azure Cosmos DB by overriding the CosmosDb:AccountEndpoint in local.settings.json and the `THEWATCHERS_COSMOSDB_ACCOUNTKEY` enviroment variable as required.
 
-Prototype will automatically create a Azure Cosmos DB Date the Database Id of `TheWatchers` containing a container with the Container Id of `Prototype2` if either doesn't already exist. The default Database and Container Id can by overridden via the CosmosDb:DatabaseId and CosmosDb:ContainerId settings in local.settings.json.
+Prototype 2 will automatically create a Azure Cosmos DB Date the Database Id of `TheWatchers` containing a container with the Container Id of `Prototype2` if either doesn't already exist. The default Database and Container Id can by overridden via the `CosmosDb:DatabaseId` and `CosmosDb:ContainerId` settings in local.settings.json.
 
 ## Settings
 

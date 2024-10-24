@@ -64,13 +64,4 @@ public sealed class UrlCheckResultModel
     ///     The body of the HTTP response.
     /// </summary>
     public string Body { get; set; }
-
-    /// <inheritdoc />
-    /// <remarks>
-    ///     CosmosDb 
-    /// </remarks>
-    //public override string ToString()
-    //{
-    //    return JsonConvert.SerializeObject(this);
-    //}
 }

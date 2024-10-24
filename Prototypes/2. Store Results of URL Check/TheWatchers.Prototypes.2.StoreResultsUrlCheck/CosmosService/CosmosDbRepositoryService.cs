@@ -9,7 +9,7 @@ namespace TheWatchers.Prototypes._2.StoreResultsUrlCheck.CosmosService;
 /// </summary>
 /// <param name="container">The Cosmos DB container.</param>
 /// <exception cref="ArgumentNullException"><c>container</c> is null.</exception>
-public class CosmosDbRepositoryService(Container container) : ICosmosDbRepositoryService
+public sealed class CosmosDbRepositoryService(Container container) : ICosmosDbRepositoryService
 {
     private readonly Container _container = container ?? throw new ArgumentNullException(nameof(container));
 

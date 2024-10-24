@@ -7,11 +7,11 @@ using TheWatchers.Prototypes._2.StoreResultsUrlCheck.Models;
 namespace TheWatchers.Prototypes._2.StoreResultsUrlCheck;
 
 /// <summary>
-///     Logs the HTTP response status code returned by a URL.
+///     Performs an HTTP request to the URL and records the response to CosmosDB.
 /// </summary>
-/// <param name="loggerFactory"></param>
+/// <param name="loggerFactory">The logger factory.</param>
 /// <param name="httpClientFactory">The HttpClient factory.</param>
-/// <param name="configuration">The configuration settings</param>
+/// <param name="configuration">The configuration settings.</param>
 /// <param name="cosmosDbRepositoryService">The Cosmos DB repository service.</param>
 /// <exception cref="ArgumentNullException">
 ///     <c>loggerFactory</c>, <c>httpClientFactory</c>, <c>configuration</c> or
@@ -25,19 +25,19 @@ public sealed class StoreResultsUrlCheckFunction(
 )
 {
     private readonly HttpClient _client =
-        httpClientFactory?.CreateClient() ?? throw new ArgumentNullException(nameof(httpClientFactory));
-
+        httpClientFactory.CreateClient() ?? throw new ArgumentNullException(nameof(httpClientFactory));
+    
     private readonly IConfiguration _configuration =
         configuration ?? throw new ArgumentNullException(nameof(configuration));
 
     private readonly ICosmosDbRepositoryService _cosmosDbRepositoryService =
         cosmosDbRepositoryService ?? throw new ArgumentNullException(nameof(cosmosDbRepositoryService));
 
-    private readonly ILogger _logger = loggerFactory?.CreateLogger<StoreResultsUrlCheckFunction>() ??
+    private readonly ILogger _logger = loggerFactory.CreateLogger<StoreResultsUrlCheckFunction>() ??
                                        throw new ArgumentNullException(nameof(loggerFactory));
 
     /// <summary>
-    ///     Performs an HTTP request to the URL and logs the response status code.
+    ///     Performs an HTTP request to the URL and records the response to CosmosDB, in response to a Timer trigger.
     /// </summary>
     /// <param name="myTimer">The timer schedule information.</param>
     /// <param name="cancellationToken">Optional <see cref="CancellationToken" /> representing request cancellation.</param>
