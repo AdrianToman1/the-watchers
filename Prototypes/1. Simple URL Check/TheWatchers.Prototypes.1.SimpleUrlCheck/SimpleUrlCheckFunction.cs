@@ -7,9 +7,9 @@ namespace TheWatchers.Prototypes._1.SimpleUrlCheck;
 /// <summary>
 ///     Logs the HTTP response status code returned by a URL.
 /// </summary>
-/// <param name="loggerFactory"></param>
+/// <param name="loggerFactory">The logger factory.</param>
 /// <param name="httpClientFactory">The HttpClient factory.</param>
-/// <param name="configuration">The configuration settings</param>
+/// <param name="configuration">The configuration settings.</param>
 /// <exception cref="ArgumentNullException"><c>loggerFactory</c>, <c>httpClientFactory</c> or <c>configuration</c> is null.</exception>
 public sealed class SimpleUrlCheckFunction(
     ILoggerFactory loggerFactory,
@@ -17,16 +17,16 @@ public sealed class SimpleUrlCheckFunction(
     IConfiguration configuration)
 {
     private readonly HttpClient _client =
-        httpClientFactory?.CreateClient() ?? throw new ArgumentNullException(nameof(httpClientFactory));
+        httpClientFactory.CreateClient() ?? throw new ArgumentNullException(nameof(httpClientFactory));
 
     private readonly IConfiguration _configuration =
         configuration ?? throw new ArgumentNullException(nameof(configuration));
 
-    private readonly ILogger _logger = loggerFactory?.CreateLogger<SimpleUrlCheckFunction>() ??
+    private readonly ILogger _logger = loggerFactory.CreateLogger<SimpleUrlCheckFunction>() ??
                                        throw new ArgumentNullException(nameof(loggerFactory));
 
     /// <summary>
-    ///     Performs an HTTP request to the URL and logs the response status code.
+    ///     Performs an HTTP request to the URL and logs the response status code, triggered by a timer.
     /// </summary>
     /// <param name="myTimer">The timer schedule information.</param>
     /// <param name="cancellationToken">Optional <see cref="CancellationToken" /> representing request cancellation.</param>
