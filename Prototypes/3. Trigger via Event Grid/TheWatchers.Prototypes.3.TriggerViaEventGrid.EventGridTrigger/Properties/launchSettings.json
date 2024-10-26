@@ -1,0 +1,21 @@
+{
+  "profiles": {
+    "TheWatchers.Prototypes._3.TriggerViaEventGrid.EventGridTrigger": {
+      "commandName": "Project",
+      "commandLineArgs": "--port 7049",
+      "environmentVariables": {
+        "THEWATCHERS_EVENTGRID_ACCESSKEY": "Foj4Yg1HTBnS1O0l5t4W33BUj7s6JNS3ggxPSxAkqdMOp3NIcZu4JQQJ99AKAC24pbEXJ3w3AAABAZEGyFEu"
+      }
+    },
+    "Container (Dockerfile)": {
+      "commandName": "Docker",
+      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}",
+      "environmentVariables": {
+        "THEWATCHERS_COSMOSDB_ACCOUNTKEY": "nPkvqy9AeRZVNR2cM3UVWrGZUkpPSTk7eXkMN+zF4sU="
+      },
+      "DockerfileRunArguments": "--init",
+      "httpPort": 30390,
+      "useSSL": false
+    }
+  }
+}

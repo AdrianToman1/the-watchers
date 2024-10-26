@@ -1,0 +1,42 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.35004.147
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheWatchers.Prototypes.3.TriggerViaEventGrid.EventGridTrigger", "TheWatchers.Prototypes.3.TriggerViaEventGrid.EventGridTrigger\TheWatchers.Prototypes.3.TriggerViaEventGrid.EventGridTrigger.csproj", "{262FF8B3-F92F-412F-BC65-8940C9A19B69}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{172CBAB1-EB11-4C55-AF9A-8C7845A5BAAC}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheWatchers.Prototypes.3.TriggerViaEventGrid.Models", "TheWatchers.Prototypes.3.TriggerViaEventGrid.Models\TheWatchers.Prototypes.3.TriggerViaEventGrid.Models.csproj", "{BE98B954-1C2B-414F-8428-A3FE7029F20B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheWatchers.Prototypes.3.TriggerViaEventGrid.UrlCheck", "TheWatchers.Prototypes.3.TriggerViaEventGrid.UrlCheck\TheWatchers.Prototypes.3.TriggerViaEventGrid.UrlCheck.csproj", "{09EF4367-6D85-4BB8-B5F9-AABC1E2A35EE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{262FF8B3-F92F-412F-BC65-8940C9A19B69}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{262FF8B3-F92F-412F-BC65-8940C9A19B69}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{262FF8B3-F92F-412F-BC65-8940C9A19B69}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{262FF8B3-F92F-412F-BC65-8940C9A19B69}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE98B954-1C2B-414F-8428-A3FE7029F20B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE98B954-1C2B-414F-8428-A3FE7029F20B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE98B954-1C2B-414F-8428-A3FE7029F20B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE98B954-1C2B-414F-8428-A3FE7029F20B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{09EF4367-6D85-4BB8-B5F9-AABC1E2A35EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{09EF4367-6D85-4BB8-B5F9-AABC1E2A35EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{09EF4367-6D85-4BB8-B5F9-AABC1E2A35EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{09EF4367-6D85-4BB8-B5F9-AABC1E2A35EE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7998D608-8A52-47B2-B818-DC4BB261B6D2}
+	EndGlobalSection
+EndGlobal

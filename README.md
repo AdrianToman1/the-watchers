@@ -38,7 +38,7 @@ This prototype needs to connect to the Cosmos DB every time it checks the URL an
 
 ### Prototype 3 - Trigger Via Event Grid
 
-The Trigger Via Event Grid will extend the functionality of the Store Results Url Check prototype to use an event-based architecture via Azure Event Grid. The trigger for the existing URL Check function need to altered so it reacts to an event that will be generated periodically be a separate Azure function.
+The Trigger Via Event Grid will extend the functionality of the Store Results Url Check prototype to use an event-based architecture via Azure Event Grid. The trigger for the existing URL Check function needs to be altered so it reacts to an event that will be generated periodically by a separate Azure function.
 
 The Trigger Via Event Grid prototype allows me to learn what is required to leverage the Azure Event Grid. This prototype also allows me to explore implementing the URL Checking logic as a microservice.
 
