@@ -1,0 +1,18 @@
+{
+  "profiles": {
+    "TheWatchers.Prototypes._4.CosmosDbTrigger.RespondToUrlCheck": {
+      "commandName": "Project",
+      "commandLineArgs": "--port 7253",
+      "environmentVariables": {
+        "THEWATCHERS_COSMOSDB_CONNECTIONSTRING": "AccountEndpoint=https://localhost:8081/;AccountKey=C2y6yDjf5/R+ob0N8A7Cgv30VRDJIWEHLM+4QDU5DE2nQ9nDuVTqobD4b8mGGyPMbIZnqyMsEcaGQy67XIw/Jw=="
+      }
+    },
+    "Container (Dockerfile)": {
+      "commandName": "Docker",
+      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}",
+      "DockerfileRunArguments": "--init",
+      "httpPort": 33736,
+      "useSSL": false
+    }
+  }
+}

@@ -49,7 +49,7 @@ This prototype only needs to use Azure Event Grid to trigger an URL check. The d
 Brad suggested leveraging an Azure Comos DB Trigger to invoke an Azure Function when URL check results is save to the Comos DB. This function will decide if the URL is offline and will generate an "offline" event for another function to handle.
 
 
-### Prototype - Azure Cosmos DB Trigger
+### Prototype 4 - Azure Cosmos DB Trigger
 
 The Azure Cosmos DB Trigger will extend the event-base architecture of the Trigger Via Event Grid prototype by using an Azure Cosmos DB Trigger to react when the results of an URL check is save to the Cosmos DB. 
 
