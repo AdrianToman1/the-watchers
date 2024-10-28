@@ -26,6 +26,8 @@ Of course, the answer to this question is: Yes. The functionality is so simple a
 
 This prototype will only check a single hardcoded URL at a hardcode time interval and log the result. The value for the URL and time interval is not important, as is what exactly is logged. The log just needs to be descriptive enough to confirm that the check was performed and a response status was obtained.
 
+Code: https://github.com/AdrianToman1/the-watchers/tree/main/Prototypes/1.%20Simple%20URL%20Check
+
 
 ### Prototype 2 - Store Results of Url Check
 
@@ -34,6 +36,8 @@ The Store Results of Url Check prototype will extend the functionality of the Si
 The Store Results of Url Check prototype allows me to learn what is required to store data into a Cosmos DB as I have not used it before. This will also allow me to explore the kind of data I will have and how it can be stored.
 
 This prototype needs to connect to the Cosmos DB every time it checks the URL and then add a record to the database that describes the result of the check. What data is stored in the database, and the structure it is stored in, is not important. The stored results only need to be descriptive enough to confirm that the check was performed and a response status was obtained.
+
+Code: https://github.com/AdrianToman1/the-watchers/tree/main/Prototypes/2.%20Store%20Results%20of%20URL%20Check
 
 
 ### Prototype 3 - Trigger Via Event Grid
@@ -44,6 +48,7 @@ The Trigger Via Event Grid prototype allows me to learn what is required to leve
 
 This prototype only needs to use Azure Event Grid to trigger an URL check. The details of the event are not important.
 
+Code: https://github.com/AdrianToman1/the-watchers/tree/main/Prototypes/3.%20Trigger%20via%20Event%20Grid
 
 
 Brad suggested leveraging an Azure Comos DB Trigger to invoke an Azure Function when URL check results is save to the Comos DB. This function will decide if the URL is offline and will generate an "offline" event for another function to handle.
@@ -57,14 +62,20 @@ Azure Comos DB Trigger Prototype will give me my first expeirence of triggering 
 
 This prototype will build upon the previous prototype, but will use an Azure Comos DB Trigger to invoke an Azure Function that will log when URL check result is saved to the Comos DB. The what is logged isn't important, it just needs to be descriptive enough to confirm that it received the URL results.
 
+Code: https://github.com/AdrianToman1/the-watchers/tree/main/Prototypes/4.%20CosmosDB%20Trigger
 
-### Prototype - Test web site
+
+### Prototype 5 - Test web site
 
 Thus far I have been using the URL to my blog to as the target URL, but things have reaching a stage where I need dedicated URLs for testing.
 
 I have written a few Azure Functions before, but never one that had an HTTP trigger. This prototype will give me expeirence doing that.
 
 This prototype will be a seperate application, and maybe even a seperate repo. It begin with it will be a two Azure functions with HTTP triggers, one that return a HTTP Status code of OK (200) and another the returns Internal Server Error (500).
+
+Code: https://github.com/AdrianToman1/plywood-violin
+
+Site: https://www.plywoodviolin.solutions/
 
 
 ### Prototype - Offline Event
