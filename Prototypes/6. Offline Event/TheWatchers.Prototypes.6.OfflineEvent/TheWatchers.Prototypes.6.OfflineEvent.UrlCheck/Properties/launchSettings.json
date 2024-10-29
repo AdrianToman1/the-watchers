@@ -1,0 +1,18 @@
+{
+  "profiles": {
+    "TheWatchers.Prototypes._6.OfflineEvent.UrlCheck": {
+      "commandName": "Project",
+      "commandLineArgs": "--port 7164",
+      "environmentVariables": {
+        "THEWATCHERS_COSMOSDB_ACCOUNTKEY": "C2y6yDjf5/R+ob0N8A7Cgv30VRDJIWEHLM+4QDU5DE2nQ9nDuVTqobD4b8mGGyPMbIZnqyMsEcaGQy67XIw/Jw=="
+      }
+    },
+    "Container (Dockerfile)": {
+      "commandName": "Docker",
+      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}",
+      "DockerfileRunArguments": "--init",
+      "httpPort": 34122,
+      "useSSL": false
+    }
+  }
+}

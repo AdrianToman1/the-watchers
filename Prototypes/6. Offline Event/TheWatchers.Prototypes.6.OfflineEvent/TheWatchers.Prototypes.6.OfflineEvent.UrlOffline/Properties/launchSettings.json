@@ -1,0 +1,15 @@
+{
+  "profiles": {
+    "TheWatchers.Prototypes._6.OfflineEvent.UrlOffline": {
+      "commandName": "Project",
+      "commandLineArgs": "--port 7221"
+    },
+    "Container (Dockerfile)": {
+      "commandName": "Docker",
+      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}",
+      "DockerfileRunArguments": "--init",
+      "httpPort": 32464,
+      "useSSL": false
+    }
+  }
+}

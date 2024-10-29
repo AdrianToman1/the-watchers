@@ -1,0 +1,19 @@
+{
+  "profiles": {
+    "TheWatchers.Prototypes._6.OfflineEvent.RespondToUrlCheck": {
+      "commandName": "Project",
+      "commandLineArgs": "--port 7167",
+      "environmentVariables": {
+        "THEWATCHERS_COSMOSDB_CONNECTIONSTRING": "AccountEndpoint=https://localhost:8081/;AccountKey=C2y6yDjf5/R+ob0N8A7Cgv30VRDJIWEHLM+4QDU5DE2nQ9nDuVTqobD4b8mGGyPMbIZnqyMsEcaGQy67XIw/Jw==",
+        "THEWATCHERS_EVENTGRID_ACCESSKEY": "5ApUx7cOxCiDJY5pDSSlieN5L9aZZtYXs0hXVfA2uesPPixraWXRJQQJ99AKAC24pbEXJ3w3AAABAZEGzdVo"
+      }
+    },
+    "Container (Dockerfile)": {
+      "commandName": "Docker",
+      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}",
+      "DockerfileRunArguments": "--init",
+      "httpPort": 31051,
+      "useSSL": false
+    }
+  }
+}

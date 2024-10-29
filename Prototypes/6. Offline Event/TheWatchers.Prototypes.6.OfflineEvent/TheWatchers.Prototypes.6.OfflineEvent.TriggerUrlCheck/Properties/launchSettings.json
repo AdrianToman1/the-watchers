@@ -1,0 +1,18 @@
+{
+  "profiles": {
+    "TheWatchers.Prototypes._6.OfflineEvent.TriggerUrlCheck": {
+      "commandName": "Project",
+      "commandLineArgs": "--port 7193",
+      "environmentVariables": {
+        "THEWATCHERS_EVENTGRID_ACCESSKEY": "8M28hX3OFe6JpVmoQszIzOqVkBQk4HjTNU7hnje13K8e10igzyekJQQJ99AKAC24pbEXJ3w3AAABAZEGNIJq"
+      }
+    },
+    "Container (Dockerfile)": {
+      "commandName": "Docker",
+      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}",
+      "DockerfileRunArguments": "--init",
+      "httpPort": 34901,
+      "useSSL": false
+    }
+  }
+}

@@ -10,8 +10,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Prototypes", "Prototypes", "{C0393F6F-4BD4-4A2F-B319-4F0124AE9CD0}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheWatchers.Prototypes.CosmosDbTrigger", "Prototypes\TheWatchers.Prototypes.CosmosDbTrigger\TheWatchers.Prototypes.CosmosDbTrigger.csproj", "{4B3A4A68-A73F-483B-9301-9E54EE57BDAC}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheWatchers.Prototypes.OfflineEvent", "Prototypes\TheWatchers.Prototypes.OfflineEvent\TheWatchers.Prototypes.OfflineEvent.csproj", "{24000413-CF39-4860-B959-49BDD296B043}"
 EndProject
 Global
@@ -20,10 +18,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{4B3A4A68-A73F-483B-9301-9E54EE57BDAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4B3A4A68-A73F-483B-9301-9E54EE57BDAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4B3A4A68-A73F-483B-9301-9E54EE57BDAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4B3A4A68-A73F-483B-9301-9E54EE57BDAC}.Release|Any CPU.Build.0 = Release|Any CPU
 		{24000413-CF39-4860-B959-49BDD296B043}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{24000413-CF39-4860-B959-49BDD296B043}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{24000413-CF39-4860-B959-49BDD296B043}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -33,7 +27,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{4B3A4A68-A73F-483B-9301-9E54EE57BDAC} = {C0393F6F-4BD4-4A2F-B319-4F0124AE9CD0}
 		{24000413-CF39-4860-B959-49BDD296B043} = {C0393F6F-4BD4-4A2F-B319-4F0124AE9CD0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
